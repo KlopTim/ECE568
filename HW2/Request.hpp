@@ -16,11 +16,16 @@ private:
     string method;
     string host;
     string port;
+    string start_line;
+    int headerSize;
 public:
-    Request(string start_line, unordered_map<string, string> head_map, vector<char> all_msg);
+    Request(string start_line, unordered_map<string, string> head_map, vector<char> all_msg, int headerSize);
     string get_method();
+    string get_startLine();
     string get_host();
     string get_port();
+    int get_headerSize();
+    int get_contentLen();
 };
 
 #endif  

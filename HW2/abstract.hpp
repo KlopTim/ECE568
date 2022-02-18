@@ -26,8 +26,3 @@ int create_service(const char * hostname, const char * port);
 
 int accept_connect(int socket_fd);
 
-void recv_all(vector<char>& all_msg, int sockt_fd);
-
-void mode_connect(int client_fd, int server_fd);
-
-void mode_request(int client_fd, int server_fd, char * msg, int len, Request & req);

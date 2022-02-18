@@ -13,7 +13,7 @@ int connect_to(const char* hostname, const char* port) {
     // get addrinfo
     status = getaddrinfo(hostname, port, &hint, &host_info_list);
     if (status != 0) {
-        fprintf(stderr, "Error: cannot get address info for host when connecting\n");
+        //fprintf(stderr, "Error: cannot get address info for host when connecting\n");
         exit(EXIT_FAILURE);
     }
     // get socket descriptor
@@ -33,7 +33,7 @@ int connect_to(const char* hostname, const char* port) {
     }
 
     if (p == NULL) {
-        fprintf(stderr, "Error: fail to connect\n");
+        //fprintf(stderr, "Error: fail to connect\n");
         exit(EXIT_FAILURE);
     }
     freeaddrinfo(host_info_list); // all done with this
@@ -56,7 +56,7 @@ int create_service(const char * hostname, const char * port) {
     hints.ai_flags = AI_PASSIVE;
     status = getaddrinfo(hostname, port, &hints, &host_info_list);
     if (status != 0) {
-        fprintf(stderr, "Error: cannot get addrss info for host when creating\n");
+        //fprintf(stderr, "Error: cannot get addrss info for host when creating\n");
         exit(EXIT_FAILURE);
     }
 
@@ -70,7 +70,7 @@ int create_service(const char * hostname, const char * port) {
         }
         // avoid message: address already in use
         if (setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1) {
-            fprintf(stderr, "setsockopt\n");
+            //fprintf(stderr, "setsockopt\n");
             exit(EXIT_FAILURE);
         }
         status = bind(socket_fd, p->ai_addr, p->ai_addrlen);
@@ -83,13 +83,13 @@ int create_service(const char * hostname, const char * port) {
     }
     // check if fail to check
     if (p == NULL) {
-        fprintf(stderr, "Error: fail to create socket or bind\n");
+        //fprintf(stderr, "Error: fail to create socket or bind\n");
         exit(EXIT_FAILURE);
     }
     // listen
     status = listen(socket_fd, 100);
     if (status == -1) {
-        fprintf(stderr, "Error: fail to listen\n");
+        //fprintf(stderr, "Error: fail to listen\n");
         exit(EXIT_FAILURE);
     }
 
@@ -105,75 +105,10 @@ int accept_connect(int socket_fd) {
     // accept players' connection
     client_connection_fd = accept(socket_fd, (struct sockaddr *)&player_socket_addr, &player_socket_addr_len);
     if (client_connection_fd == -1) {
-        fprintf(stderr, "Error: cannot accept connection on socket\n");
+        //fprintf(stderr, "Error: cannot accept connection on socket\n");
         exit(EXIT_FAILURE);
     }
     return client_connection_fd;
 }
 
-void recv_all(vector<char>& all_msg, int sockt_fd) {
-  char msg[65535];
-  int status;
-  do {
-    cout << "Still Receving ...\n";
-    int status = recv(sockt_fd, msg, 65535, 0);
-    for (int i = 0; i < 65535; i++) all_msg.push_back(msg[i]);
-  } while (status > 0);
-}
 
-
-void mode_connect(int client_fd, int server_fd) {
-    send(client_fd, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
-    fd_set main_set;
-    fd_set read_fds;
-    FD_ZERO(&main_set); 
-    FD_ZERO(&read_fds);
-    FD_SET(client_fd, &main_set);
-    FD_SET(server_fd, &main_set);
-    int fdmax = client_fd > server_fd ? client_fd : server_fd;
-    while (1) {
-        read_fds = main_set;
-        if (select(fdmax + 1, &read_fds, NULL, NULL, NULL) == -1) {
-            fprintf(stderr, "Error: select\n");
-            exit(EXIT_FAILURE);
-        }
-        if (FD_ISSET(client_fd, &read_fds)) {
-            cout << "client msg\n";
-            char msg[65535];
-            int len = recv(client_fd, &msg, 65535, 0);
-            if (len <= 0) exit(EXIT_SUCCESS);
-            send(server_fd, &msg, len, 0);
-            //cout << msg;
-        }
-        else if (FD_ISSET(server_fd, &read_fds)){
-            cout << "server msg\n";
-            char msg[65535];
-            int len = recv(server_fd, &msg, 65535, 0);
-            if (len <= 0) exit(EXIT_SUCCESS);
-            send(client_fd, &msg, len, 0);
-            //cout << msg;
-        }
-    }
-
-}
-
-void mode_request(int client_fd, int server_fd, char * msg, int len, Request & req) {
-  /* send the request from the client to the target server */
-  send(server_fd, msg, len, 0);
-  /* get the Response from the target server */
-  vector<char> res_msg;
-  recv_all(res_msg, server_fd);
-  cout << "\nResponse Receving Succefully\n";
-  printf("%s", res_msg.data());
-  /* parsing the response */
-  Parser res_par;
-  res_par.parsing(res_msg);
-  /* generate the http response pocket */
-  Response res(res_par.getstartline(), res_par.getheaders(), res_msg);
-  /* check if the Response can be cashable or not */
-  // TODO
-
-  /* send the Response back to the client */
-  send(client_fd, res_msg.data(), res_msg.size(), 0);
-  cout << "\nSend back to client Succefully\n";
-}

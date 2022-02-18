@@ -10,32 +10,31 @@ void Parser::parsing(vector<char>all_msg){
         if(all_msg[i]=='\r'&&all_msg[i+1]=='\n')break;
         size_t start = i;
         string curr_line = mygetline(all_msg,i);
-        
         size_t pos = findcolon(curr_line);
-        //cout<<curr_line<<endl;
         if(pos==-1)break;
         string key = curr_line.substr(0,pos);
         size_t value_start = pos + 1;
-        size_t value_len = (i-2-start)-(pos+1);
-        //size_t count = 0;
-        while(curr_line[value_start]==' '){value_start++;value_len--;}
-        string value = curr_line.substr(value_start,value_len);
-        //cout<<key<<" : "<<key.size()<<endl;
-        //cout<<value<<" : "<<value.size()<<endl;
-        //cout<<value_len<<endl;
+        //size_t value_len = (i-2-start)-(pos+1);
+        while(curr_line[value_start]==' '){value_start++;}
+        size_t value_end = value_start;
+        while(value_end<curr_line.size() && curr_line[value_end] != ' '){value_end++;}
+        string value = curr_line.substr(value_start,value_end-value_start);
         headers[key]=value;
     }
+    headerSize = i + 2;
 }
 
 string Parser::mygetline(vector<char>all_msg,size_t& i){
     vector<char> curr_line;
-    while(all_msg[i]!='\r'){
+    //while(all_msg[i]!='\r'){
+    while(i + 1 < all_msg.size() && !(all_msg[i]=='\r'&&all_msg[i+1]=='\n')){
         curr_line.push_back(all_msg[i]);
         i++;
     }
     //curr_line.push_back('\n');
     i+=2;
-    return curr_line.data();
+    string s(curr_line.begin(),curr_line.end());
+    return s;
 }
 
 
@@ -54,4 +53,8 @@ string Parser::getstartline(){
 
 unordered_map<string,string> Parser::getheaders(){
     return headers;
+}
+
+int Parser::get_headerSize() {
+    return headerSize;
 }

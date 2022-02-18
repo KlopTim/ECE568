@@ -11,6 +11,7 @@ using namespace std;
 class Parser{
     unordered_map<string,string>headers;
     string start_line;
+    int headerSize;
 public:
     Parser();
     void parsing(vector<char>all_msg);
@@ -18,6 +19,7 @@ public:
     size_t findcolon(string str);
     string getstartline();
     unordered_map<string,string> getheaders();
+    int get_headerSize();
 };
 
 #endif  

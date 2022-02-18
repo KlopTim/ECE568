@@ -1,0 +1,208 @@
+successfully create proxy service
+0:accept connection from new client
+0:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Fri Feb 18 18:51:13 2022
+
+0: Connect to target successfully
+0: CONNECT
+0: Responding "HTTP/1.1 200 OK"
+1:accept connection from new client
+1:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Fri Feb 18 18:51:14 2022
+
+1: Connect to target successfully
+1: CONNECT
+1: Responding "HTTP/1.1 200 OK"
+2:accept connection from new client
+3:accept connection from new client
+4:accept connection from new client
+5:accept connection from new client
+6:accept connection from new client
+7:accept connection from new client
+8:accept connection from new client
+9:accept connection from new client
+9:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Fri Feb 18 18:51:14 2022
+
+9: Connect to target successfully
+9: CONNECT
+9: Responding "HTTP/1.1 200 OK"
+10:accept connection from new client
+10:  "CONNECT fonts.gstatic.com:443 HTTP/1.1" from fonts.gstatic.com @ Fri Feb 18 18:51:14 2022
+
+10: Connect to target successfully
+10: CONNECT
+10: Responding "HTTP/1.1 200 OK"
+0: no longer receive
+
+0: Tunnel closed
+11:accept connection from new client
+11:  "CONNECT www.google-analytics.com:443 HTTP/1.1" from www.google-analytics.com @ Fri Feb 18 18:51:15 2022
+
+11: Connect to target successfully
+11: CONNECT
+11: Responding "HTTP/1.1 200 OK"
+12:accept connection from new client
+12:  "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net @ Fri Feb 18 18:51:15 2022
+
+12: Connect to target successfully
+12: CONNECT
+12: Responding "HTTP/1.1 200 OK"
+13:accept connection from new client
+13:  "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net @ Fri Feb 18 18:51:15 2022
+
+13: Connect to target successfully
+13: CONNECT
+13: Responding "HTTP/1.1 200 OK"
+14:accept connection from new client
+14:  "CONNECT stats.g.doubleclick.net:443 HTTP/1.1" from stats.g.doubleclick.net @ Fri Feb 18 18:51:15 2022
+
+14: Connect to target successfully
+14: CONNECT
+14: Responding "HTTP/1.1 200 OK"
+15:accept connection from new client
+16:accept connection from new client
+17:accept connection from new client
+8: This connection show no request
+5: This connection show no request
+5: This connection show no request
+5: This connection show no request
+8: This connection show no request
+4: This connection show no request
+6: This connection show no request
+1: no longer receive
+
+1: Tunnel closed
+17: This connection show no request
+17: This connection show no request
+17: This connection show no request
+18:accept connection from new client
+18:  "CONNECT normandy.cdn.mozilla.net:443 HTTP/1.1" from normandy.cdn.mozilla.net @ Fri Feb 18 18:51:39 2022
+
+18: Connect to target successfully
+18: CONNECT
+18: Responding "HTTP/1.1 200 OK"
+19:accept connection from new client
+19:  "CONNECT classify-client.services.mozilla.com:443 HTTP/1.1" from classify-client.services.mozilla.com @ Fri Feb 18 18:51:39 2022
+
+19: Connect to target successfully
+19: CONNECT
+19: Responding "HTTP/1.1 200 OK"
+20:accept connection from new client
+20:  "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org @ Fri Feb 18 18:51:39 2022
+
+20: Connect to target successfully
+20: POST
+21:accept connection from new client
+21: This connection show no request
+22:accept connection from new client
+23:accept connection from new client
+24:accept connection from new client
+24:  "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com @ Fri Feb 18 18:52:17 2022
+
+24: Connect to target successfully
+24: CONNECT
+24: Responding "HTTP/1.1 200 OK"
+23:  "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com @ Fri Feb 18 18:52:17 2022
+
+23: Connect to target successfully
+25:accept connection from new client
+23: CONNECT
+23: Responding "HTTP/1.1 200 OK"
+25:  "CONNECT accounts.google.com:443 HTTP/1.1" from accounts.google.com @ Fri Feb 18 18:52:17 2022
+
+25: Connect to target successfully
+25: CONNECT
+25: Responding "HTTP/1.1 200 OK"
+26:accept connection from new client
+26:  "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog @ Fri Feb 18 18:52:17 2022
+
+26: Connect to target successfully
+26: POST
+27:accept connection from new client
+27:  "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog @ Fri Feb 18 18:52:17 2022
+
+27: Connect to target successfully
+27: POST
+28:accept connection from new client
+28:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Fri Feb 18 18:52:18 2022
+
+28: Connect to target successfully
+28: CONNECT
+28: Responding "HTTP/1.1 200 OK"
+29:accept connection from new client
+29:  "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog @ Fri Feb 18 18:52:18 2022
+
+29: Connect to target successfully
+29: POST
+30:accept connection from new client
+30:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Fri Feb 18 18:52:18 2022
+
+30: Connect to target successfully
+30: CONNECT
+30: Responding "HTTP/1.1 200 OK"
+22: This connection show no request
+31:accept connection from new client
+31:  "CONNECT rr2---sn-hjoj-jaul.googlevideo.com:443 HTTP/1.1" from rr2---sn-hjoj-jaul.googlevideo.com @ Fri Feb 18 18:52:19 2022
+
+31: Connect to target successfully
+31: CONNECT
+31: Responding "HTTP/1.1 200 OK"
+32:accept connection from new client
+32:  "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog @ Fri Feb 18 18:52:19 2022
+
+32: Connect to target successfully
+32: POST
+33:accept connection from new client
+34:accept connection from new client
+35:accept connection from new client
+36:accept connection from new client
+35:  "CONNECT rr1---sn-hjoj-jaul.googlevideo.com:443 HTTP/1.1" from rr1---sn-hjoj-jaul.googlevideo.com @ Fri Feb 18 18:52:20 2022
+
+35: Connect to target successfully
+35: CONNECT
+37:accept connection from new client
+33:  "CONNECT rr2---sn-hjoj-jaul.googlevideo.com:443 HTTP/1.1" from rr2---sn-hjoj-jaul.googlevideo.com @ Fri Feb 18 18:52:20 2022
+
+33: Connect to target successfully
+33: CONNECT
+38:accept connection from new client
+33: Responding "HTTP/1.1 200 OK"
+36:  "CONNECT rr2---sn-hjoj-jaul.googlevideo.com:443 HTTP/1.1" from rr2---sn-hjoj-jaul.googlevideo.com @ Fri Feb 18 18:52:20 2022
+
+36: Connect to target successfully
+36: CONNECT
+39:accept connection from new client
+38:  "CONNECT pagead2.googlesyndication.com:443 HTTP/1.1" from pagead2.googlesyndication.com @ Fri Feb 18 18:52:20 2022
+
+35: Responding "HTTP/1.1 200 OK"
+38: Connect to target successfully
+38: CONNECT
+36: Responding "HTTP/1.1 200 OK"
+39:  "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com @ Fri Feb 18 18:52:20 2022
+
+39: Connect to target successfully
+39: CONNECT
+38: Responding "HTTP/1.1 200 OK"
+39: Responding "HTTP/1.1 200 OK"
+39: no longer receive
+
+39: Tunnel closed
+40:accept connection from new client
+40:  "CONNECT rr5---sn-5uaeznk7.googlevideo.com:443 HTTP/1.1" from rr5---sn-5uaeznk7.googlevideo.com @ Fri Feb 18 18:52:25 2022
+
+40: Connect to target successfully
+40: CONNECT
+40: Responding "HTTP/1.1 200 OK"
+37: This connection show no request
+41:accept connection from new client
+41:  "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog @ Fri Feb 18 18:52:25 2022
+
+41: Connect to target successfully
+41: POST
+42:accept connection from new client
+42:  "CONNECT rr5---sn-5uaeznk7.googlevideo.com:443 HTTP/1.1" from rr5---sn-5uaeznk7.googlevideo.com @ Fri Feb 18 18:52:26 2022
+
+42: Connect to target successfully
+42: CONNECT
+42: Responding "HTTP/1.1 200 OK"
+43:accept connection from new client
+43:  "CONNECT ad.doubleclick.net:443 HTTP/1.1" from ad.doubleclick.net @ Fri Feb 18 18:52:26 2022
+
