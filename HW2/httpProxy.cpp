@@ -201,6 +201,12 @@ void mode_connect(int client_fd, int client_id, int server_fd) {
 
 void mode_get(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine) {
   /* check cash */
+  if (try_used_cache(client_fd, client_id, server_fd, msg, len, req, startLine)) {
+    return;
+  }
+  pthread_mutex_lock(&mutex);
+  cout << client_id <<": No cache available\n";
+  pthread_mutex_unlock(&mutex);
   /* send the request from the client to the target server */
   send(server_fd, msg, len, 0);
   /* get "part of" Response from the target server */
@@ -305,8 +311,80 @@ void try_cache(Response & res, string startLine, int client_id) {
   }
   pthread_mutex_lock(&mutex);
   cout << client_id <<": cache the response\n";
-  cache_map.insert(pair<string,Response>(startLine,res));
+  Response temp = res;
+  cache_map.insert(pair<string,Response>(startLine,temp));
   pthread_mutex_unlock(&mutex);
 }
+
+bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine) {
+  /* check if there is a cache avaible */
+  if (cache_map.find(req.get_startLine()) == cache_map.end()) return false;
+  // available cache found
+  Response res = (cache_map.find(req.get_startLine()))->second;
+  /* revalidate check */
+  if (res.has_noCache() || (res.has_mustRevalidate() && res.isExpire())) {
+    // check e_tag and Last-Modified
+    if (!res.has_eTag() && !res.has_LastModified()) {
+      // the response can be used
+      vector<char> all_msg = res.get_allMsg();
+      send(client_fd, all_msg.data(), all_msg.size(), 0);
+      return true;
+    } 
+    else {
+      // add If-None-Match or If-Modified-Since
+      string extra = res.has_eTag() ? res.get_eTag() : res.get_LastModified();
+      extra += "\r\n";
+      vector<char> vec_extra(extra.begin(),extra.end());
+      vector<char> req_msg = req.get_allMsg();
+      req_msg.insert(req_msg.begin()+req.get_headerSize()-2, vec_extra.begin(), vec_extra.end());
+      /* TODO: print out the req_mes */
+      // send modified Request to Server
+      send(server_fd, req_msg.data(), req_msg.size(), 0);
+      // Receive (all) Response from Server
+      char server_msg[65535];
+      vector<char> new_res_msg;
+      do{
+        int mes_len = recv(server_fd, server_msg, sizeof(server_msg), 0);
+        if (mes_len <= 0) break;
+        vector<char> temp_msg(server_msg, server_msg + mes_len);
+        new_res_msg.insert(new_res_msg.end(), temp_msg.begin(), temp_msg.end());
+      } while(1);
+      // parsing response
+      Parser res_par;
+      res_par.parsing(new_res_msg);
+      Response new_res(res_par.getstartline(), res_par.getheaders(), new_res_msg, res_par.get_headerSize());
+      // check status 304 or 200
+      string status_line = new_res.get_startLine();
+      // if 304 -> cache can be used
+      if (status_line.find("304") != string::npos) {
+        vector<char> all_msg = res.get_allMsg();
+        send(client_fd, all_msg.data(), all_msg.size(), 0);
+      }
+      // if 200 -> return new Response to user
+      else {
+        send(client_fd, new_res_msg.data(), new_res_msg.size(), 0);
+        // try to cache the new response
+        //try_cache(Response & res, string startLine, int client_id)
+        try_cache(new_res, status_line, client_id);
+      }
+      return true;
+    }
+  }
+  else {
+    // no cache control
+    /* expire time check */
+    if (res.isExpire()) {
+      // Ask for a new Response
+      return false;
+    }
+    else {
+      // return the current cache to the client
+      vector<char> all_msg = res.get_allMsg();
+      send(client_fd, all_msg.data(), all_msg.size(), 0);
+      return true;
+    }
+  }
+}
+
 
 

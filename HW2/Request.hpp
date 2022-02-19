@@ -26,6 +26,7 @@ public:
     string get_port();
     int get_headerSize();
     int get_contentLen();
+    vector<char> get_allMsg();
 };
 
 #endif  

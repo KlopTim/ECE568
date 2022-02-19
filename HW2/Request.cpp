@@ -50,3 +50,7 @@ int Request::get_contentLen() {
 string Request::get_startLine() {
     return start_line;
 }
+
+vector<char> Request::get_allMsg() {
+    return all_msg;
+}

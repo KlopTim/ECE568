@@ -20,12 +20,21 @@ public:
     //Response(Response& other);
     bool isValid();
     bool isCashable();
-    bool isExpire();
     bool isChunk();
     int get_contentLen();
     int get_headerSize();
     void set_allMsg(vector<char> all_msg);
+    vector<char> get_allMsg();
     string get_cacheInfo();
+    string get_startLine();
+
+    bool has_noCache();
+    bool has_mustRevalidate();
+    bool isExpire();
+    bool has_eTag();
+    bool has_LastModified();
+    string get_eTag();
+    string get_LastModified();
 };
 
 

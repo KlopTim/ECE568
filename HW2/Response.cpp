@@ -18,7 +18,6 @@ Response::Response(Response& other) {
 
 bool Response::isValid() {return false;}
 bool Response::isCashable() {return false;}
-bool Response::isExpire() {return false;}
 bool Response::isChunk() {
     if (head_map.find("Transfer-Encoding") != head_map.end()) {
         if (head_map["Transfer-Encoding"] == "chunked")
@@ -39,8 +38,48 @@ int Response::get_headerSize() {
 void Response::set_allMsg(vector<char> all_msg) {
     this->all_msg = all_msg;
 }
+vector<char> Response::get_allMsg() {
+    return all_msg;
+}
 
 string Response::get_cacheInfo() {
     if (head_map.find("Cache-Control") == head_map.end()) return "";
     return head_map["Cache-Control"];
+}
+
+bool Response::has_noCache() {
+    if (head_map.find("Cache-Control") == head_map.end()) return false;
+    string head_value = head_map["Cache-Control"];
+    if (head_value.find("no-cache") == string::npos) return false;
+    return true;
+}
+bool Response::has_mustRevalidate() {
+    if (head_map.find("Cache-Control") == head_map.end()) return false;
+    string head_value = head_map["Cache-Control"];
+    if (head_value.find("must-revalidate") == string::npos) return false;
+    return true;
+}
+bool Response::isExpire() {
+    // check expire 
+    // check max-age
+    return false;
+}
+bool Response::has_eTag() {
+    if (head_map.find("ETag") == head_map.end()) return false;
+    return true;
+}
+bool Response::has_LastModified() {
+    if (head_map.find("Last-Modified") == head_map.end()) return false;
+    return true;
+}
+
+string Response::get_startLine() {
+    return start_line;
+}
+
+string Response::get_eTag() {
+    return head_map["ETag"];
+}
+string Response::get_LastModified() {
+    return head_map["Last-Modified"];
 }

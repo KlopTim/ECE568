@@ -37,5 +37,6 @@ void * communicate(void * client_msg);
 
 void try_cache(Response & res, string startLine, int client_id);
 
+bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine);
 
 #endif  
