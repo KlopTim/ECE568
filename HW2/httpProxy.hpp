@@ -5,8 +5,11 @@
 #include "Parser.hpp"
 #include "Request.hpp"
 #include "Response.hpp"
+#include "myTime.hpp"
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>

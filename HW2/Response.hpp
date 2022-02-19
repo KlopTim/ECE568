@@ -1,6 +1,7 @@
 #ifndef RESPONSE_H_H  
-#define RESPONSE_H_H  
-
+#define RESPONSE_H_H
+#include "myTime.hpp"  
+#include <ctype.h>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -35,6 +36,7 @@ public:
     bool has_LastModified();
     string get_eTag();
     string get_LastModified();
+    string get_expireTime();
 };
 
 

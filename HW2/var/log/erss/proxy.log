@@ -1,152 +1,433 @@
 successfully create proxy service
 0:accept connection from new client
-0:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Fri Feb 18 23:36:07 2022
+0:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:14 2022
 
 0: Connect to target successfully
-0: CONNECT
-0: Responding "HTTP/1.1 200 OK"
+0: GET
+0: It's non-chunked!
+0: Error: no content len
 1:accept connection from new client
 2:accept connection from new client
-2:  "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com @ Fri Feb 18 23:36:14 2022
-
-2: Connect to target successfully
-2: CONNECT
-2: Responding "HTTP/1.1 200 OK"
 3:accept connection from new client
-3:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Fri Feb 18 23:36:14 2022
+1:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:15 2022
+
+1: Connect to target successfully
+1: GET
+3:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:16 2022
 
 3: Connect to target successfully
-3: CONNECT
-3: Responding "HTTP/1.1 200 OK"
-1: This connection show no request
+1: It's non-chunked!
+1: Error: no content len
+3: GET
+3: It's non-chunked!
+3: Error: no content len
+3:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:20 2022
+
+3: Connect to target successfully
+3: GET
 4:accept connection from new client
-4:  "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com @ Fri Feb 18 23:36:20 2022
+4:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:20 2022
 
 4: Connect to target successfully
 4: GET
-4: It's chunked!
+3: It's non-chunked!
+3: Error: no content len
+4: It's non-chunked!
+4: Error: no content len
 5:accept connection from new client
 6:accept connection from new client
-6: This connection show no request
-6: This connection show no request
 7:accept connection from new client
-7:  "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org @ Fri Feb 18 23:37:48 2022
+7:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sat Feb 19 18:08:21 2022
 
 7: Connect to target successfully
 7: GET
 7: It's non-chunked!
+7: Error: no content len
 8:accept connection from new client
-8:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Fri Feb 18 23:38:08 2022
+8:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:42 2022
 
 8: Connect to target successfully
 8: CONNECT
 8: Responding "HTTP/1.1 200 OK"
 9:accept connection from new client
-9:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Fri Feb 18 23:38:09 2022
-
-9: Connect to target successfully
-9: CONNECT
-9: Responding "HTTP/1.1 200 OK"
 10:accept connection from new client
-10:  "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com @ Fri Feb 18 23:38:09 2022
-
-10: Connect to target successfully
-10: CONNECT
-10: Responding "HTTP/1.1 200 OK"
 11:accept connection from new client
 12:accept connection from new client
 13:accept connection from new client
-9: no longer receive
-
-9: Tunnel closed
-2: no longer receive
-
-2: Tunnel closed
 14:accept connection from new client
-14:  "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net @ Fri Feb 18 23:38:10 2022
+13:  "CONNECT code.jquery.com:443 HTTP/1.1" from code.jquery.com @ Sat Feb 19 18:08:43 2022
+
+13: Connect to target successfully
+13: CONNECT
+15:accept connection from new client
+13: Responding "HTTP/1.1 200 OK"
+14:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:43 2022
 
 14: Connect to target successfully
 14: CONNECT
-14: Responding "HTTP/1.1 200 OK"
-15:accept connection from new client
+12:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:43 2022
+
+12: Connect to target successfully
+12: CONNECT
+15:  "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com @ Sat Feb 19 18:08:44 2022
+
+15: Connect to target successfully
+15: CONNECT
+15: Responding "HTTP/1.1 200 OK"
 16:accept connection from new client
 17:accept connection from new client
-16:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Fri Feb 18 23:38:11 2022
+14: no host connection
+11:  "CONNECT cdn.datatables.net:443 HTTP/1.1" from cdn.datatables.net @ Sat Feb 19 18:08:44 2022
 
-16: Connect to target successfully
-16: CONNECT
-17:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Fri Feb 18 23:38:11 2022
+11: Connect to target successfully
+11: CONNECT
+14: Responding "HTTP/1.1 200 OK"
+12: Responding "HTTP/1.1 200 OK"
+17:  "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com @ Sat Feb 19 18:08:44 2022
 
 17: Connect to target successfully
 17: CONNECT
-16: Responding "HTTP/1.1 200 OK"
-17: Responding "HTTP/1.1 200 OK"
-18:accept connection from new client
-19:accept connection from new client
-19:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Fri Feb 18 23:38:12 2022
+9:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:44 2022
 
-19: Connect to target successfully
-19: CONNECT
-19: Responding "HTTP/1.1 200 OK"
+9: Connect to target successfully
+9: CONNECT
+11: Responding "HTTP/1.1 200 OK"
+9: Responding "HTTP/1.1 200 OK"
+17: no host connection
+17: Responding "HTTP/1.1 200 OK"
 17: no longer receive
 
 17: Tunnel closed
+14: no longer receive
+
+14: Tunnel closed
+8: no longer receive
+
+8: Tunnel closed
+12: no longer receive
+
+12: Tunnel closed
+9: no longer receive
+
+9: Tunnel closed
+18:accept connection from new client
+18:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:48 2022
+
+18: Connect to target successfully
+18: CONNECT
+18: Responding "HTTP/1.1 200 OK"
+19:accept connection from new client
 20:accept connection from new client
-20:  "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net @ Fri Feb 18 23:38:13 2022
+19:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:49 2022
+
+19: Connect to target successfully
+19: CONNECT
+21:accept connection from new client
+20:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:49 2022
 
 20: Connect to target successfully
 20: CONNECT
-20: Responding "HTTP/1.1 200 OK"
-21:accept connection from new client
-13: This connection show no request
-13: This connection show no request
-13: This connection show no request
-15: This connection show no request
-18: This connection show no request
 22:accept connection from new client
-22:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Fri Feb 18 23:38:17 2022
+20: Responding "HTTP/1.1 200 OK"
+21:  "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com @ Sat Feb 19 18:08:49 2022
+
+21: Connect to target successfully
+21: CONNECT
+19: Responding "HTTP/1.1 200 OK"
+22:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:49 2022
 
 22: Connect to target successfully
 22: CONNECT
 22: Responding "HTTP/1.1 200 OK"
+21: Responding "HTTP/1.1 200 OK"
 23:accept connection from new client
-21: This connection show no request
-23:  "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com @ Fri Feb 18 23:38:19 2022
-
 24:accept connection from new client
+24:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:49 2022
+
+24: Connect to target successfully
+24: CONNECT
 25:accept connection from new client
+24: Responding "HTTP/1.1 200 OK"
+25:  "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com @ Sat Feb 19 18:08:49 2022
+
+25: Connect to target successfully
+25: CONNECT
 26:accept connection from new client
 27:accept connection from new client
+25: Responding "HTTP/1.1 200 OK"
+27:  "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com @ Sat Feb 19 18:08:49 2022
+
+24: no host connection
+27: Connect to target successfully
+27: CONNECT
+27: Responding "HTTP/1.1 200 OK"
 28:accept connection from new client
-29:accept connection from new client
-30:accept connection from new client
-23: Connect to target successfully
-23: CONNECT
-31:accept connection from new client
-23: Responding "HTTP/1.1 200 OK"
-28:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Fri Feb 18 23:38:19 2022
+28:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Sat Feb 19 18:08:49 2022
 
 28: Connect to target successfully
 28: CONNECT
-30:  "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com @ Fri Feb 18 23:38:19 2022
-
-30: Connect to target successfully
-30: CONNECT
+27: no host connection
 28: Responding "HTTP/1.1 200 OK"
-31:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Fri Feb 18 23:38:19 2022
+29:accept connection from new client
+29:  "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com @ Sat Feb 19 18:08:51 2022
+
+29: Connect to target successfully
+29: CONNECT
+29: Responding "HTTP/1.1 200 OK"
+27: no longer receive
+
+27: Tunnel closed
+24: no longer receive
+
+24: Tunnel closed
+30:accept connection from new client
+31:accept connection from new client
+31:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Sat Feb 19 18:08:51 2022
 
 31: Connect to target successfully
 31: CONNECT
-30: Responding "HTTP/1.1 200 OK"
+32:accept connection from new client
 31: Responding "HTTP/1.1 200 OK"
-28: no host connection
-30: no host connection
-22: no longer receive
+32:  "CONNECT fonts.gstatic.com:443 HTTP/1.1" from fonts.gstatic.com @ Sat Feb 19 18:08:51 2022
 
-22: Tunnel closed
+32: Connect to target successfully
+32: CONNECT
+33:accept connection from new client
+32: Responding "HTTP/1.1 200 OK"
+33:  "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com @ Sat Feb 19 18:08:51 2022
+
+33: Connect to target successfully
+33: CONNECT
+31: no host connection
+33: Responding "HTTP/1.1 200 OK"
 31: no longer receive
 
 31: Tunnel closed
-32:accept connection from new client
-32:  "GET http://www.httpwatch.com/favicon.ico HTTP/1.1" from www.httpwatch.com @ Fri Feb 18 23:38:33 2022
+34:accept connection from new client
+34:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:53 2022
+
+34: Connect to target successfully
+34: CONNECT
+35:accept connection from new client
+34: Responding "HTTP/1.1 200 OK"
+35:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:53 2022
+
+35: Connect to target successfully
+35: CONNECT
+35: Responding "HTTP/1.1 200 OK"
+36:accept connection from new client
+36:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Sat Feb 19 18:08:53 2022
+
+36: Connect to target successfully
+36: CONNECT
+37:accept connection from new client
+36: Responding "HTTP/1.1 200 OK"
+37:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Sat Feb 19 18:08:53 2022
+
+37: Connect to target successfully
+37: CONNECT
+37: Responding "HTTP/1.1 200 OK"
+18: no longer receive
+
+18: Tunnel closed
+38:accept connection from new client
+38:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:08:58 2022
+
+38: Connect to target successfully
+38: CONNECT
+38: Responding "HTTP/1.1 200 OK"
+22: no longer receive
+
+22: Tunnel closed
+35: no longer receive
+
+35: Tunnel closed
+19: no longer receive
+
+19: Tunnel closed
+20: no longer receive
+
+20: Tunnel closed
+34: no longer receive
+
+34: Tunnel closed
+38: no longer receive
+
+38: Tunnel closed
+39:accept connection from new client
+40:accept connection from new client
+41:accept connection from new client
+42:accept connection from new client
+39:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:01 2022
+
+39: Connect to target successfully
+42:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:02 2022
+
+42: Connect to target successfully
+42: CONNECT
+39: CONNECT
+42: Responding "HTTP/1.1 200 OK"
+39: Responding "HTTP/1.1 200 OK"
+42: no host connection
+42: no longer receive
+
+42: Tunnel closed
+43:accept connection from new client
+43:  "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com @ Sat Feb 19 18:09:02 2022
+
+43: Connect to target successfully
+43: GET
+43: It's non-chunked!
+44:accept connection from new client
+44:  "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com @ Sat Feb 19 18:09:02 2022
+
+44: Connect to target successfully
+44: GET
+44: It's non-chunked!
+40: This connection show no request
+45:accept connection from new client
+46:accept connection from new client
+47:accept connection from new client
+48:accept connection from new client
+49:accept connection from new client
+45:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:10 2022
+
+45: Connect to target successfully
+45: CONNECT
+45: Responding "HTTP/1.1 200 OK"
+48:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:10 2022
+
+48: Connect to target successfully
+48: CONNECT
+47:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:10 2022
+
+47: Connect to target successfully
+47: CONNECT
+47: Responding "HTTP/1.1 200 OK"
+49:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:10 2022
+
+49: Connect to target successfully
+49: CONNECT
+48: Responding "HTTP/1.1 200 OK"
+49: Responding "HTTP/1.1 200 OK"
+49: no host connection
+39: no longer receive
+
+39: Tunnel closed
+45: no longer receive
+
+45: Tunnel closed
+48: no longer receive
+
+48: Tunnel closed
+47: no longer receive
+
+47: Tunnel closed
+50:accept connection from new client
+50:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:17 2022
+
+50: Connect to target successfully
+50: CONNECT
+50: Responding "HTTP/1.1 200 OK"
+51:accept connection from new client
+52:accept connection from new client
+53:accept connection from new client
+51:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:18 2022
+
+51: Connect to target successfully
+51: CONNECT
+51: Responding "HTTP/1.1 200 OK"
+53: This connection show no request
+53:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:18 2022
+
+53: Connect to target successfully
+53: CONNECT
+53: Responding "HTTP/1.1 200 OK"
+53: no longer receive
+
+53: Tunnel closed
+54:accept connection from new client
+54:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:21 2022
+
+54: Connect to target successfully
+54: CONNECT
+54: Responding "HTTP/1.1 200 OK"
+51: no longer receive
+
+51: Tunnel closed
+54: no longer receive
+
+54: Tunnel closed
+55:accept connection from new client
+56:accept connection from new client
+56:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sat Feb 19 18:09:27 2022
+
+56: Connect to target successfully
+56: CONNECT
+56: Responding "HTTP/1.1 200 OK"
+56: no host connection
+56: no longer receive
+
+56: Tunnel closed
+57:accept connection from new client
+57:  "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com @ Sat Feb 19 18:09:27 2022
+
+57: Connect to target successfully
+57: GET
+58:accept connection from new client
+58:  "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com @ Sat Feb 19 18:09:27 2022
+
+58: Connect to target successfully
+58: GET
+50: no longer receive
+
+50: Tunnel closed
+49: no longer receive
+
+49: Tunnel closed
+7: This connection show no request
+7: This connection show no request
+33: no longer receive
+
+33: Tunnel closed
+37: no longer receive
+
+37: Tunnel closed
+36: no longer receive
+
+36: Tunnel closed
+29: no longer receive
+
+29: Tunnel closed
+32: no longer receive
+
+32: Tunnel closed
+15: no longer receive
+
+15: Tunnel closed
+25: no longer receive
+
+25: Tunnel closed
+11: no longer receive
+
+11: Tunnel closed
+13: no longer receive
+
+13: Tunnel closed
+21: no longer receive
+
+21: Tunnel closed
+59:accept connection from new client
+59: This connection show no request
+60:accept connection from new client
+60:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Sat Feb 19 18:13:00 2022
+
+60: Connect to target successfully
+60: CONNECT
+60: Responding "HTTP/1.1 200 OK"
+60: no longer receive
+
+60: Tunnel closed
+61:accept connection from new client
+61:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Sat Feb 19 18:13:01 2022
 

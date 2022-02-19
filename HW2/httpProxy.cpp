@@ -321,23 +321,49 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
   if (cache_map.find(req.get_startLine()) == cache_map.end()) return false;
   // available cache found
   Response res = (cache_map.find(req.get_startLine()))->second;
+  pthread_mutex_lock(&mutex);
+  cout << client_id <<": find available cache\n";
+  //string temp(req.get_allMsg().begin(), req.get_allMsg().end());
+  //cout << client_id <<": reqeust after adding headers\n";
+  //cout << client_id << temp;
+  pthread_mutex_unlock(&mutex);
   /* revalidate check */
   if (res.has_noCache() || (res.has_mustRevalidate() && res.isExpire())) {
+    pthread_mutex_lock(&mutex);
+    cout << client_id <<": cache has cache-control\n";
+    pthread_mutex_unlock(&mutex);
     // check e_tag and Last-Modified
     if (!res.has_eTag() && !res.has_LastModified()) {
       // the response can be used
+      pthread_mutex_lock(&mutex);
+      cout << client_id <<": no etag and last-modified\n";
+      pthread_mutex_unlock(&mutex);
       vector<char> all_msg = res.get_allMsg();
       send(client_fd, all_msg.data(), all_msg.size(), 0);
       return true;
     } 
     else {
       // add If-None-Match or If-Modified-Since
-      string extra = res.has_eTag() ? res.get_eTag() : res.get_LastModified();
+      pthread_mutex_lock(&mutex);
+      cout << client_id <<": add headers to the message\n";
+      pthread_mutex_unlock(&mutex);
+      string extra;
+      if (res.has_eTag()) {
+        extra = "If-None-Match: " + res.get_eTag(); 
+      }
+      else {
+        extra = "If-Modified-Since: " + res.get_LastModified();
+      }
       extra += "\r\n";
       vector<char> vec_extra(extra.begin(),extra.end());
       vector<char> req_msg = req.get_allMsg();
       req_msg.insert(req_msg.begin()+req.get_headerSize()-2, vec_extra.begin(), vec_extra.end());
       /* TODO: print out the req_mes */
+      //pthread_mutex_lock(&mutex); 
+      //std::string s(req_msg.begin(), req_msg.end());
+      //cout << client_id <<": reqeust after adding headers\n";
+      //cout << client_id << s;
+      //pthread_mutex_unlock(&mutex);
       // send modified Request to Server
       send(server_fd, req_msg.data(), req_msg.size(), 0);
       // Receive (all) Response from Server
@@ -357,11 +383,17 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
       string status_line = new_res.get_startLine();
       // if 304 -> cache can be used
       if (status_line.find("304") != string::npos) {
+        pthread_mutex_lock(&mutex);
+        cout << client_id <<": 304\n";
+        pthread_mutex_unlock(&mutex);
         vector<char> all_msg = res.get_allMsg();
         send(client_fd, all_msg.data(), all_msg.size(), 0);
       }
       // if 200 -> return new Response to user
       else {
+        pthread_mutex_lock(&mutex);
+        cout << client_id <<": 200 OK\n";
+        pthread_mutex_unlock(&mutex);
         send(client_fd, new_res_msg.data(), new_res_msg.size(), 0);
         // try to cache the new response
         //try_cache(Response & res, string startLine, int client_id)
@@ -371,18 +403,30 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
     }
   }
   else {
-    // no cache control
+    // check age and expire
+    pthread_mutex_lock(&mutex);
+    cout << client_id <<": max-age or expire\n";
+    pthread_mutex_unlock(&mutex);
     /* expire time check */
     if (res.isExpire()) {
       // Ask for a new Response
+      string exprTime = res.get_expireTime();
+      pthread_mutex_lock(&mutex);
+      cout << client_id << ": EXPIRE!\n";
+      cout << client_id << exprTime << endl;
+      pthread_mutex_unlock(&mutex);
       return false;
     }
     else {
       // return the current cache to the client
+      pthread_mutex_lock(&mutex);
+      cout << client_id <<": NON-EXPIRE\n";
+      pthread_mutex_unlock(&mutex);
       vector<char> all_msg = res.get_allMsg();
       send(client_fd, all_msg.data(), all_msg.size(), 0);
       return true;
     }
+    return false;
   }
 }
 
