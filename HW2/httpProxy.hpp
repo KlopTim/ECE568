@@ -28,7 +28,6 @@ typedef struct client_t client;
 
 void build_proxy();
 
-void recv_all(vector<char>& all_msg, int sockt_fd);
 
 void mode_connect(int client_fd, int client_id, int server_fd);
 

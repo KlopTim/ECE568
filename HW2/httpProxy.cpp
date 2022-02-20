@@ -8,17 +8,11 @@ void build_proxy() {
   const char * port = "12345";
   /* become a server */
   int socket_fd = create_service(hostname, port);
-  pthread_mutex_lock(&mutex);
-  outfile << "successfully create proxy service\n";
-  pthread_mutex_unlock(&mutex);
   /* loop forever */
   int client_id = 0;
   while (1) {
     /* accept connection from client */
     int client_fd = accept_connect(socket_fd);
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<":accept connection from new client\n";
-    pthread_mutex_unlock(&mutex);
     client client_msg;
     client_msg.client_id = client_id;
     client_msg.client_fd = client_fd;
@@ -38,9 +32,6 @@ void * communicate(void * msgs) {
   char msg[65535];
   int len = recv(client_connection_fd, msg, 65535, 0);
   if (len <= 0) {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": This connection show no request\n";
-    pthread_mutex_unlock(&mutex);
     return NULL;
   }
 
@@ -54,9 +45,6 @@ void * communicate(void * msgs) {
   /* generate the http request pocket */
   Request req(req_par.getstartline(), req_par.getheaders(), all_msg, req_par.get_headerSize());
   if (req.get_method() != "CONNECT" && req.get_method() != "GET" && req.get_method() != "POST") {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": no host connection\n";
-    pthread_mutex_unlock(&mutex);
     return NULL;
   }
 
@@ -74,9 +62,6 @@ void * communicate(void * msgs) {
   char* dt = ctime(&now);
   outfile << client_id <<":  \"" << req_par.getstartline() << "\" from "<< target_host;
   outfile << " @ " <<  dt << endl;
-
-  cout << client_id <<":  \"" << req_par.getstartline() << "\" from "<< target_host;
-  cout << " @ " <<  dt << endl;
   pthread_mutex_unlock(&mutex);
 
 
@@ -85,42 +70,22 @@ void * communicate(void * msgs) {
   int toTarget_fd = connect_to(target_host.c_str(), target_port.c_str());
   pthread_mutex_unlock(&mutex);
   if (toTarget_fd == -1) {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": connect to target fail\n";
-    cout << client_id <<": connect to target fail\n";
-    pthread_mutex_unlock(&mutex);
+    return  NULL;
   }
+
   pthread_mutex_lock(&mutex);
-  outfile << client_id <<": Connect to target successfully\n";
-  cout << client_id <<": Connect to target successfully\n";
+  outfile << client_id <<": Requesting \""<< req.get_startLine() << "\" from " << target_host << endl;
   pthread_mutex_unlock(&mutex);
-
-
   /* check the Method */
   string method = req.get_method();
   if (method == "CONNECT") {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": CONNECT\n";
-    cout << client_id <<": CONNECT\n";
-    pthread_mutex_unlock(&mutex);
     mode_connect(client_connection_fd, client_id, toTarget_fd);
     pthread_mutex_lock(&mutex);
     outfile << client_id <<": Tunnel closed\n";
     pthread_mutex_unlock(&mutex);
-
   } else if (method == "POST") {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": POST\n";
-    cout << client_id <<": POST\n";
-    pthread_mutex_unlock(&mutex);
     mode_post(client_connection_fd, client_id, toTarget_fd, msg, len, req);
-    //cerr << "haven't implement yet\n";
-    //mode_post();
   } else if (method == "GET") {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": GET\n";
-    cout << client_id <<": GET\n";
-    pthread_mutex_unlock(&mutex);
     mode_get(client_connection_fd, client_id, toTarget_fd, msg, len, req, req.get_startLine());
   }
 
@@ -129,24 +94,6 @@ void * communicate(void * msgs) {
   return NULL;
 }
 
-
-
-void recv_all(vector<char>& all_msg, int sockt_fd) {
-  pthread_mutex_lock(&mutex);
-  outfile << ": begin Receving ...\n";
-  pthread_mutex_unlock(&mutex);
-  char msg[65535];
-  int len = 0;
-  do {
-    pthread_mutex_lock(&mutex);
-    outfile << ": Still Receving ...\n";
-    pthread_mutex_unlock(&mutex);
-    //cout << "Still Receving ...\n";
-    len = recv(sockt_fd, msg, 65535, 0);
-    if (len <= 0) return;
-    for (int i = 0; i < len; i++) all_msg.push_back(msg[i]);
-  } while (len > 0);
-}
 
 
 void mode_connect(int client_fd, int client_id, int server_fd) {
@@ -165,26 +112,17 @@ void mode_connect(int client_fd, int client_id, int server_fd) {
     while (1) {
         read_fds = main_set;
         if (select(fdmax + 1, &read_fds, NULL, NULL, NULL) == -1) {
-            pthread_mutex_lock(&mutex);
-            outfile << client_id <<": Error: select\n\n";
-            pthread_mutex_unlock(&mutex);
             return;
         }
         if (FD_ISSET(client_fd, &read_fds)) {
-            //cout << "client msg\n";
             char msg[65535];
             int len = recv(client_fd, &msg, 65535, 0);
             if (len <= 0) {
-              pthread_mutex_lock(&mutex);
-              outfile << client_id <<": no longer receive\n\n";
-              pthread_mutex_unlock(&mutex);
               return;
             }
             send(server_fd, &msg, len, 0);
-            //cout << msg;
         }
         else if (FD_ISSET(server_fd, &read_fds)){
-            //cout << "server msg\n";
             char msg[65535];
             int len = recv(server_fd, &msg, 65535, 0);
             if (len <= 0) {
@@ -194,7 +132,6 @@ void mode_connect(int client_fd, int client_id, int server_fd) {
               return;
             }
             send(client_fd, &msg, len, 0);
-            //cout << msg;
         }
     }
 }
@@ -204,19 +141,12 @@ void mode_get(int client_fd, int client_id, int server_fd, char * msg, int len, 
   if (try_used_cache(client_fd, client_id, server_fd, msg, len, req, startLine)) {
     return;
   }
-  pthread_mutex_lock(&mutex);
-  cout << client_id <<": No cache available\n";
-  pthread_mutex_unlock(&mutex);
   /* send the request from the client to the target server */
   send(server_fd, msg, len, 0);
   /* get "part of" Response from the target server */
   char server_msg[65536] = {0};
   int mes_len = recv(server_fd, server_msg, sizeof(server_msg), 0);
   if (mes_len <= 0) {
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": Bad GET Request\n";
-    cout << client_id <<": Bad GET Request\n";
-    pthread_mutex_unlock(&mutex);
     return;
   }
   /* parsing response */
@@ -225,12 +155,14 @@ void mode_get(int client_fd, int client_id, int server_fd, char * msg, int len, 
   res_par.parsing(res_msg);
   /* transfer to Resposnse */
   Response res(res_par.getstartline(), res_par.getheaders(), res_msg, res_par.get_headerSize());
+  pthread_mutex_lock(&mutex);
+  outfile << client_id <<": Received \""<< res.get_startLine() << "\" from " << req.get_host() << endl;
+  pthread_mutex_unlock(&mutex);
   /* check if chunk */
   if (res.isChunk()) {
     /* chunk */
     pthread_mutex_lock(&mutex);
-    outfile << client_id <<": It's chunked!\n";
-    cout << client_id <<": It's chunked!\n";
+    outfile << client_id <<": not cacheable because response is CHUNK\n";
     pthread_mutex_unlock(&mutex);
     // easy: send message back and forward
     do {
@@ -241,43 +173,32 @@ void mode_get(int client_fd, int client_id, int server_fd, char * msg, int len, 
   }
   else {
     /* non-chunk */
-    pthread_mutex_lock(&mutex);
-    outfile << client_id <<": It's non-chunked!\n";
-    cout << client_id <<": It's non-chunked!\n";
-    pthread_mutex_unlock(&mutex);
     // get content len
     int content_len = res.get_contentLen();
     if (content_len == -1) {
-      pthread_mutex_lock(&mutex);
-      outfile << client_id <<": Error: no content len\n";
-      cout << client_id <<": Error: no content len\n";
-      cout << server_msg << endl;
-      pthread_mutex_unlock(&mutex);
       send(client_fd, server_msg, mes_len, 0);
+      pthread_mutex_lock(&mutex);
+      outfile << client_id <<": Responding \""<< res.get_startLine() << "\""<< endl;
+      pthread_mutex_unlock(&mutex);
       return;
     }
     // keep receive all response
     do{
-      pthread_mutex_lock(&mutex);
-      cout << client_id <<": Still receiving\n";
-      cout << client_id <<": res_msg size:" << res_msg.size()<< endl;
-      cout << client_id <<": content Len size + header size::" << content_len + res.get_headerSize()<< endl;
-      pthread_mutex_unlock(&mutex);
       if (res_msg.size() >= content_len + res.get_headerSize()) break;
       mes_len = recv(server_fd, server_msg, sizeof(server_msg), 0);
       if (mes_len <= 0) break;
       vector<char> temp_msg(server_msg, server_msg + mes_len);
       res_msg.insert(res_msg.end(), temp_msg.begin(), temp_msg.end());
     } while(1);
-    pthread_mutex_lock(&mutex);
-    cout << client_id <<": Finish receiving\n";
-    pthread_mutex_unlock(&mutex);
     /* send response to client*/
     send(client_fd, res_msg.data(), res_msg.size(), 0);
     /* try cache */
     res.set_allMsg(res_msg);
     try_cache(res, startLine, client_id);
   }
+  pthread_mutex_lock(&mutex);
+  outfile << client_id <<": Responding \""<< res.get_startLine() << "\""<< endl;
+  pthread_mutex_unlock(&mutex);
   return;
 }
 
@@ -287,56 +208,78 @@ void mode_post(int client_fd, int client_id, int server_fd, char * msg, int len,
   /* send request to server */
   send(server_fd, msg, len, 0);
   /* receive response from server */
-  char res_msg[65535];
-  int res_len = recv(server_fd, &res_msg, 65535, 0);
+  char server_msg[65535];
+  int res_len = recv(server_fd, &server_msg, 65535, 0);
   if (res_len <= 0) {
     pthread_mutex_lock(&mutex);
     outfile << client_id <<": Post Response fail\n";
     pthread_mutex_unlock(&mutex);
   }
-  send(client_fd, &res_msg, res_len, 0);
+  vector<char> res_msg(server_msg, server_msg + res_len);
+  Parser res_par;
+  res_par.parsing(res_msg);
+  Response res(res_par.getstartline(), res_par.getheaders(), res_msg, res_par.get_headerSize());
+  pthread_mutex_lock(&mutex);
+  outfile << client_id <<": Received \""<< res.get_startLine() << "\" from " << req.get_host() << endl;
+  pthread_mutex_unlock(&mutex);
+  send(client_fd, res_msg.data(), res_len, 0);
+  pthread_mutex_lock(&mutex);
+  outfile << client_id <<": Responding \""<< res.get_startLine() << "\""<< endl;
+  pthread_mutex_unlock(&mutex);
 }
 
 void try_cache(Response & res, string startLine, int client_id) {
-  pthread_mutex_lock(&mutex);
-  cout << client_id <<": Try cache\n";
-  pthread_mutex_unlock(&mutex);
   // check no store
   string cacheInfo = res.get_cacheInfo();
-  if (cacheInfo == "" || cacheInfo.find("no-store") != string::npos) {
+  if (cacheInfo.find("no-store") != string::npos) {
     pthread_mutex_lock(&mutex);
-    cout << client_id <<": cannot cache the response\n";
+    cout << client_id <<": no cacheable because no-store\n";
     pthread_mutex_unlock(&mutex);
     return;
   }
   pthread_mutex_lock(&mutex);
-  cout << client_id <<": cache the response\n";
+  // TODO: add lock here
   Response temp = res;
   cache_map.insert(pair<string,Response>(startLine,temp));
   pthread_mutex_unlock(&mutex);
+  string exprTime = res.get_expireTime();
+  bool revalid = res.has_noCache() || res.has_mustRevalidate();
+  if (revalid) {
+    pthread_mutex_lock(&mutex);
+    outfile << client_id <<": cached, but requires re-validation\n";
+    pthread_mutex_unlock(&mutex);
+  }
+  else {
+    if (exprTime != "") {
+      pthread_mutex_lock(&mutex);
+      outfile << client_id <<": cached, expires at " << exprTime << endl;
+      pthread_mutex_unlock(&mutex);
+    }
+    else {
+      pthread_mutex_lock(&mutex);
+      outfile << client_id <<": cached" << endl;
+      pthread_mutex_unlock(&mutex);
+    }
+  }
 }
 
 bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine) {
   /* check if there is a cache avaible */
-  if (cache_map.find(req.get_startLine()) == cache_map.end()) return false;
+  if (cache_map.find(req.get_startLine()) == cache_map.end()) {
+    pthread_mutex_lock(&mutex);
+    outfile << client_id <<": not in cache\n";
+    pthread_mutex_unlock(&mutex);
+    return false;
+  }
   // available cache found
   Response res = (cache_map.find(req.get_startLine()))->second;
-  pthread_mutex_lock(&mutex);
-  cout << client_id <<": find available cache\n";
-  //string temp(req.get_allMsg().begin(), req.get_allMsg().end());
-  //cout << client_id <<": reqeust after adding headers\n";
-  //cout << client_id << temp;
-  pthread_mutex_unlock(&mutex);
   /* revalidate check */
   if (res.has_noCache() || (res.has_mustRevalidate() && res.isExpire())) {
-    pthread_mutex_lock(&mutex);
-    cout << client_id <<": cache has cache-control\n";
-    pthread_mutex_unlock(&mutex);
     // check e_tag and Last-Modified
     if (!res.has_eTag() && !res.has_LastModified()) {
       // the response can be used
       pthread_mutex_lock(&mutex);
-      cout << client_id <<": no etag and last-modified\n";
+      outfile << client_id <<": in cache, valid\n";
       pthread_mutex_unlock(&mutex);
       vector<char> all_msg = res.get_allMsg();
       send(client_fd, all_msg.data(), all_msg.size(), 0);
@@ -345,7 +288,7 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
     else {
       // add If-None-Match or If-Modified-Since
       pthread_mutex_lock(&mutex);
-      cout << client_id <<": add headers to the message\n";
+      outfile << client_id <<": in cache, requires validation\n";
       pthread_mutex_unlock(&mutex);
       string extra;
       if (res.has_eTag()) {
@@ -358,12 +301,6 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
       vector<char> vec_extra(extra.begin(),extra.end());
       vector<char> req_msg = req.get_allMsg();
       req_msg.insert(req_msg.begin()+req.get_headerSize()-2, vec_extra.begin(), vec_extra.end());
-      /* TODO: print out the req_mes */
-      //pthread_mutex_lock(&mutex); 
-      //std::string s(req_msg.begin(), req_msg.end());
-      //cout << client_id <<": reqeust after adding headers\n";
-      //cout << client_id << s;
-      //pthread_mutex_unlock(&mutex);
       // send modified Request to Server
       send(server_fd, req_msg.data(), req_msg.size(), 0);
       // Receive (all) Response from Server
@@ -383,20 +320,12 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
       string status_line = new_res.get_startLine();
       // if 304 -> cache can be used
       if (status_line.find("304") != string::npos) {
-        pthread_mutex_lock(&mutex);
-        cout << client_id <<": 304\n";
-        pthread_mutex_unlock(&mutex);
         vector<char> all_msg = res.get_allMsg();
         send(client_fd, all_msg.data(), all_msg.size(), 0);
       }
       // if 200 -> return new Response to user
       else {
-        pthread_mutex_lock(&mutex);
-        cout << client_id <<": 200 OK\n";
-        pthread_mutex_unlock(&mutex);
         send(client_fd, new_res_msg.data(), new_res_msg.size(), 0);
-        // try to cache the new response
-        //try_cache(Response & res, string startLine, int client_id)
         try_cache(new_res, status_line, client_id);
       }
       return true;
@@ -404,23 +333,22 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
   }
   else {
     // check age and expire
-    pthread_mutex_lock(&mutex);
-    cout << client_id <<": max-age or expire\n";
-    pthread_mutex_unlock(&mutex);
     /* expire time check */
     if (res.isExpire()) {
       // Ask for a new Response
       string exprTime = res.get_expireTime();
       pthread_mutex_lock(&mutex);
-      cout << client_id << ": EXPIRE!\n";
-      cout << client_id << exprTime << endl;
+      //cout << client_id << ": EXPIRE!\n";
+      //cout << client_id << exprTime << endl;
+      outfile << client_id << ": in cache, but expired at " << exprTime << endl;
       pthread_mutex_unlock(&mutex);
       return false;
     }
     else {
       // return the current cache to the client
       pthread_mutex_lock(&mutex);
-      cout << client_id <<": NON-EXPIRE\n";
+      //cout << client_id <<": NON-EXPIRE\n";
+      outfile << client_id << ": in cache, valid" << endl;
       pthread_mutex_unlock(&mutex);
       vector<char> all_msg = res.get_allMsg();
       send(client_fd, all_msg.data(), all_msg.size(), 0);
