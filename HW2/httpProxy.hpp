@@ -13,6 +13,10 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <signal.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <time.h>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -28,6 +32,9 @@ typedef struct client_t client;
 
 void build_proxy();
 
+void handler(int sig);
+
+void create_daemon();
 
 void mode_connect(int client_fd, int client_id, int server_fd);
 

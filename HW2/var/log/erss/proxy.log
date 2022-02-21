@@ -1,169 +1,174 @@
-0:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Sun Feb 20 00:43:34 2022
+0:  "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com @ Mon Feb 21 00:23:52 2022
 
-0: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+0: Requesting "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com
+0: not in cache
+0: Received "HTTP/1.1 200 OK" from detectportal.firefox.com
+0: cached, but requires re-validation
 0: Responding "HTTP/1.1 200 OK"
-1:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sun Feb 20 00:43:35 2022
+1:  "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com @ Mon Feb 21 00:23:52 2022
 
-1: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+1: Requesting "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com
+1: not in cache
+1: Received "HTTP/1.1 200 OK" from detectportal.firefox.com
+1: cached, but requires re-validation
 1: Responding "HTTP/1.1 200 OK"
-3:  "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com @ Sun Feb 20 00:43:36 2022
+2:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Mon Feb 21 00:23:53 2022
 
-3: Requesting "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com
-6:  "CONNECT code.jquery.com:443 HTTP/1.1" from code.jquery.com @ Sun Feb 20 00:43:36 2022
+2: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+2: Responding "HTTP/1.1 200 OK"
+3:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Mon Feb 21 00:23:55 2022
 
-6: Requesting "CONNECT code.jquery.com:443 HTTP/1.1" from code.jquery.com
+3: Requesting "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com
 3: Responding "HTTP/1.1 200 OK"
+5:  "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com @ Mon Feb 21 00:23:56 2022
+
+5: Requesting "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com
+6:  "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com @ Mon Feb 21 00:23:56 2022
+
+6: Requesting "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com
+5: Responding "HTTP/1.1 200 OK"
 6: Responding "HTTP/1.1 200 OK"
-1: no longer receive
+4:  "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com @ Mon Feb 21 00:23:57 2022
 
-1: Tunnel closed
-12:  "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com @ Sun Feb 20 00:43:44 2022
+4: Requesting "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com
+4: Responding "HTTP/1.1 200 OK"
+7:  "CONNECT accounts.google.com:443 HTTP/1.1" from accounts.google.com @ Mon Feb 21 00:23:57 2022
 
-12: Requesting "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com
+7: Requesting "CONNECT accounts.google.com:443 HTTP/1.1" from accounts.google.com
+8:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Mon Feb 21 00:23:57 2022
+
+8: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+7: Responding "HTTP/1.1 200 OK"
+8: Responding "HTTP/1.1 200 OK"
+9:  "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net @ Mon Feb 21 00:23:57 2022
+
+9: Requesting "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net
+9: Responding "HTTP/1.1 200 OK"
+10:  "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com @ Mon Feb 21 00:23:58 2022
+
+10: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
+10: Responding "HTTP/1.1 200 OK"
+11:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Mon Feb 21 00:23:58 2022
+
+11: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
+11: Responding "HTTP/1.1 200 OK"
+12:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Mon Feb 21 00:23:58 2022
+
+12: Requesting "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com
 12: Responding "HTTP/1.1 200 OK"
-13:  "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com @ Sun Feb 20 00:43:44 2022
+13:  "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com @ Mon Feb 21 00:23:58 2022
 
-13: Requesting "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com
+13: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
 13: Responding "HTTP/1.1 200 OK"
-14:  "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com @ Sun Feb 20 00:43:44 2022
+16:  "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net @ Mon Feb 21 00:23:59 2022
 
-14: Requesting "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com
-14: Responding "HTTP/1.1 200 OK"
-15:  "CONNECT accounts.google.com:443 HTTP/1.1" from accounts.google.com @ Sun Feb 20 00:43:44 2022
+16: Requesting "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net
+15:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Mon Feb 21 00:23:59 2022
 
-15: Requesting "CONNECT accounts.google.com:443 HTTP/1.1" from accounts.google.com
-15: Responding "HTTP/1.1 200 OK"
-16:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Sun Feb 20 00:43:44 2022
-
-16: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+15: Requesting "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com
 16: Responding "HTTP/1.1 200 OK"
-17:  "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net @ Sun Feb 20 00:43:45 2022
+15: Responding "HTTP/1.1 200 OK"
+13: no longer receive
 
-17: Requesting "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net
-17: Responding "HTTP/1.1 200 OK"
-18:  "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com @ Sun Feb 20 00:43:45 2022
+13: Tunnel closed
+15: Tunnel closed
+18:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:02 2022
 
-18: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
-18: Responding "HTTP/1.1 200 OK"
-20:  "CONNECT www.google.com:443 HTTP/1.1" from www.google.com @ Sun Feb 20 00:43:45 2022
+18: Requesting "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn
+18: not in cache
+18: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
+18: Responding "HTTP/1.1 304 Not Modified"
+19:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:03 2022
 
-20: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
-20: Responding "HTTP/1.1 200 OK"
-21:  "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com @ Sun Feb 20 00:43:45 2022
+19: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn
+22:  "CONNECT youtube.com:443 HTTP/1.1" from youtube.com @ Mon Feb 21 00:24:04 2022
 
-21: Requesting "CONNECT yt3.ggpht.com:443 HTTP/1.1" from yt3.ggpht.com
-21: Responding "HTTP/1.1 200 OK"
-22:  "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net @ Sun Feb 20 00:43:46 2022
+22: Requesting "CONNECT youtube.com:443 HTTP/1.1" from youtube.com
+21:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:04 2022
 
-22: Requesting "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net
+21: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn
+19: not in cache
 22: Responding "HTTP/1.1 200 OK"
-23:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sun Feb 20 00:43:49 2022
+21: not in cache
+19: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
+19: Responding "HTTP/1.1 304 Not Modified"
+21: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
+21: Responding "HTTP/1.1 304 Not Modified"
+23:  "CONNECT www.facebook.com:443 HTTP/1.1" from www.facebook.com @ Mon Feb 21 00:24:07 2022
 
-23: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+23: Requesting "CONNECT www.facebook.com:443 HTTP/1.1" from www.facebook.com
 23: Responding "HTTP/1.1 200 OK"
-25:  "CONNECT cdn.datatables.net:443 HTTP/1.1" from cdn.datatables.net @ Sun Feb 20 00:43:51 2022
+24:  "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com @ Mon Feb 21 00:24:07 2022
 
-25: Requesting "CONNECT cdn.datatables.net:443 HTTP/1.1" from cdn.datatables.net
+24: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+24: Received "HTTP/1.1 200 OK" from ocsp.digicert.com
+24: Responding "HTTP/1.1 200 OK"
+25:  "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net @ Mon Feb 21 00:24:08 2022
+
+25: Requesting "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net
+28:  "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com @ Mon Feb 21 00:24:08 2022
+
+28: Requesting "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com
 25: Responding "HTTP/1.1 200 OK"
-27:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sun Feb 20 00:43:51 2022
-
-27: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
-27: Responding "HTTP/1.1 200 OK"
-29:  "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com @ Sun Feb 20 00:43:53 2022
-
-29: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
-32:  "CONNECT www.wikipedia.org:443 HTTP/1.1" from www.wikipedia.org @ Sun Feb 20 00:43:53 2022
-
-28:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sun Feb 20 00:43:53 2022
-
-28: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
 28: Responding "HTTP/1.1 200 OK"
-23: Tunnel closed
+26:  "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net @ Mon Feb 21 00:24:08 2022
+
+26: Requesting "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net
+26: Responding "HTTP/1.1 200 OK"
+28: Tunnel closed
+21:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:14 2022
+
+21: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn
+21: not in cache
+29:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:14 2022
+
+21: Received "HTTP/1.1 200 OK" from www.cad.zju.edu.cn
+29: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn
+29: not in cache
+21: cached
+21: Responding "HTTP/1.1 200 OK"
+29: Received "HTTP/1.1 200 OK" from www.cad.zju.edu.cn
+29: cached
 29: Responding "HTTP/1.1 200 OK"
-31:  "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca @ Sun Feb 20 00:43:53 2022
+30:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:15 2022
 
-31: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
-32: Requesting "CONNECT www.wikipedia.org:443 HTTP/1.1" from www.wikipedia.org
-31: Responding "HTTP/1.1 200 OK"
-32: Responding "HTTP/1.1 200 OK"
-33:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:43:58 2022
+30: Requesting "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn
+30: not in cache
+30: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
+30: Responding "HTTP/1.1 304 Not Modified"
+31:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:16 2022
 
-33: Requesting "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn
+31: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn
+33:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:16 2022
+
+33: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn
+31: in cache, valid
+32:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Mon Feb 21 00:24:17 2022
+
+32: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn
 33: not in cache
-27: no longer receive
+32: not in cache
+32: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
+32: Responding "HTTP/1.1 304 Not Modified"
+33: Received "HTTP/1.1 200 OK" from www.cad.zju.edu.cn
+33: cached
+33: Responding "HTTP/1.1 200 OK"
+34:  "CONNECT shavar.services.mozilla.com:443 HTTP/1.1" from shavar.services.mozilla.com @ Mon Feb 21 00:24:40 2022
 
-27: Tunnel closed
-33: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-33: Responding "HTTP/1.1 304 Not Modified"
-34:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:43:59 2022
+34: Requesting "CONNECT shavar.services.mozilla.com:443 HTTP/1.1" from shavar.services.mozilla.com
+34: Responding "HTTP/1.1 200 OK"
+35:  "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com @ Mon Feb 21 00:24:40 2022
 
-34: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn
-36:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:43:59 2022
+35: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+35: Received "HTTP/1.1 200 OK" from ocsp.digicert.com
+35: Responding "HTTP/1.1 200 OK"
+34: Tunnel closed
+36:  "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com @ Mon Feb 21 00:24:52 2022
 
-36: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn
-35:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:43:59 2022
+36: Requesting "GET http://detectportal.firefox.com/canonical.html HTTP/1.1" from detectportal.firefox.com
+36: in cache, valid
+37:  "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com @ Mon Feb 21 00:24:52 2022
 
-35: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn
-34: not in cache
-36: not in cache
-35: not in cache
-36: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-36: Responding "HTTP/1.1 304 Not Modified"
-34: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-34: Responding "HTTP/1.1 304 Not Modified"
-35: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-35: Responding "HTTP/1.1 304 Not Modified"
-37:  "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:44:02 2022
-
-37: Requesting "GET http://www.cad.zju.edu.cn/index.html HTTP/1.1" from www.cad.zju.edu.cn
-37: not in cache
-37: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-37: Responding "HTTP/1.1 304 Not Modified"
-38:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:44:03 2022
-
-38: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zhongwen.jpg HTTP/1.1" from www.cad.zju.edu.cn
-40:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:44:04 2022
-
-39:  "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn @ Sun Feb 20 00:44:04 2022
-
-39: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/zd.jpg HTTP/1.1" from www.cad.zju.edu.cn
-39: not in cache
-40: Requesting "GET http://www.cad.zju.edu.cn/templets/default/imgzd/ENGLISH.jpg HTTP/1.1" from www.cad.zju.edu.cn
-39: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-38: not in cache
-39: Responding "HTTP/1.1 304 Not Modified"
-40: not in cache
-40: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-40: Responding "HTTP/1.1 304 Not Modified"
-38: Received "HTTP/1.1 304 Not Modified" from www.cad.zju.edu.cn
-38: Responding "HTTP/1.1 304 Not Modified"
-41:  "CONNECT www.facebook.com:443 HTTP/1.1" from www.facebook.com @ Sun Feb 20 00:44:08 2022
-
-41: Requesting "CONNECT www.facebook.com:443 HTTP/1.1" from www.facebook.com
-41: Responding "HTTP/1.1 200 OK"
-42:  "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net @ Sun Feb 20 00:44:08 2022
-
-42: Requesting "CONNECT static.xx.fbcdn.net:443 HTTP/1.1" from static.xx.fbcdn.net
-45:  "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com @ Sun Feb 20 00:44:08 2022
-
-45: Requesting "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com
-42: Responding "HTTP/1.1 200 OK"
-45: Responding "HTTP/1.1 200 OK"
-45: Tunnel closed
-3: Tunnel closed
-44:  "CONNECT facebook.com:443 HTTP/1.1" from facebook.com @ Sun Feb 20 00:44:09 2022
-
-44: Requesting "CONNECT facebook.com:443 HTTP/1.1" from facebook.com
-44: Responding "HTTP/1.1 200 OK"
-46:  "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org @ Sun Feb 20 00:44:11 2022
-
-46: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
-46: not in cache
-46: Received "HTTP/1.1 200 OK" from httpbin.org
-46: cached
-46: Responding "HTTP/1.1 200 OK"
-47:  "POST http://httpbin.org/post HTTP/1.1" from httpbin.org @ Sun Feb 20 00:44:20 2022
-
-47: Requesting "POST http://httpbin.org/post HTTP/1.1" from httpbin.org
-47: Received "HTTP/1.1 200 OK" from httpbin.org
-47: Responding "HTTP/1.1 200 OK"
+37: Requesting "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com
+37: in cache, valid
+25: Tunnel closed

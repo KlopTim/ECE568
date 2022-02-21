@@ -1,10 +1,47 @@
 #include "httpProxy.hpp"
 
+static bool flag = true;
 unordered_map<string, Response> cache_map;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_rwlock_t rw_mutex = PTHREAD_RWLOCK_INITIALIZER;
 ofstream outfile("var/log/erss/proxy.log");
+
+void create_daemon() {
+  pid_t pid;
+  pid = fork();
+  if (pid == -1) exit(EXIT_FAILURE);
+  else if (pid) exit(EXIT_SUCCESS);
+
+  if (setsid() == -1) exit(EXIT_FAILURE);
+
+  pid = fork();
+  if (pid == -1) exit(EXIT_FAILURE);
+  else if (pid) exit(EXIT_SUCCESS);
+
+  chdir("/");
+  int i = 0;
+  for (i = 0; i < 3; ++i) close(i);
+
+  umask(0);
+  return;
+}
+
+void handler(int sig) {
+  flag = false;
+}
+
 void build_proxy() {
+  /* become a daemon */
+  time_t t;
+  int fd;
+  create_daemon();
+  struct sigaction act;
+  act.sa_handler = handler;
+  sigemptyset(&act.sa_mask);
+  act.sa_flags = 0;
+  if (sigaction(SIGQUIT, &act, NULL)) exit(EXIT_SUCCESS);
+
+
   const char * hostname = NULL;
   const char * port = "12345";
   /* become a server */
