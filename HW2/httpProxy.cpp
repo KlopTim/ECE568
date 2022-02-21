@@ -2,6 +2,7 @@
 
 unordered_map<string, Response> cache_map;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_rwlock_t rw_mutex = PTHREAD_RWLOCK_INITIALIZER;
 ofstream outfile("var/log/erss/proxy.log");
 void build_proxy() {
   const char * hostname = NULL;
@@ -137,10 +138,8 @@ void mode_connect(int client_fd, int client_id, int server_fd) {
 }
 
 void mode_get(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine) {
-  /* check cash */
-  if (try_used_cache(client_fd, client_id, server_fd, msg, len, req, startLine)) {
-    return;
-  }
+  /* check cache */
+  if (try_used_cache(client_fd, client_id, server_fd, msg, len, req, startLine)) return;
   /* send the request from the client to the target server */
   send(server_fd, msg, len, 0);
   /* get "part of" Response from the target server */
@@ -237,11 +236,15 @@ void try_cache(Response & res, string startLine, int client_id) {
     pthread_mutex_unlock(&mutex);
     return;
   }
-  pthread_mutex_lock(&mutex);
-  // TODO: add lock here
+  // add write lock here
+  pthread_rwlock_wrlock(&rw_mutex);
   Response temp = res;
   cache_map.insert(pair<string,Response>(startLine,temp));
-  pthread_mutex_unlock(&mutex);
+  // erase cache
+  if (cache_map.size() > 20) {
+    cache_map.erase(cache_map.begin());
+  }
+  pthread_rwlock_unlock(&rw_mutex);
   string exprTime = res.get_expireTime();
   bool revalid = res.has_noCache() || res.has_mustRevalidate();
   if (revalid) {
@@ -265,7 +268,9 @@ void try_cache(Response & res, string startLine, int client_id) {
 
 bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int len, Request & req, string startLine) {
   /* check if there is a cache avaible */
+  pthread_rwlock_rdlock(&rw_mutex);
   if (cache_map.find(req.get_startLine()) == cache_map.end()) {
+    pthread_rwlock_unlock(&rw_mutex);
     pthread_mutex_lock(&mutex);
     outfile << client_id <<": not in cache\n";
     pthread_mutex_unlock(&mutex);
@@ -273,6 +278,7 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
   }
   // available cache found
   Response res = (cache_map.find(req.get_startLine()))->second;
+  pthread_rwlock_unlock(&rw_mutex);
   /* revalidate check */
   if (res.has_noCache() || (res.has_mustRevalidate() && res.isExpire())) {
     // check e_tag and Last-Modified
@@ -325,6 +331,10 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
       }
       // if 200 -> return new Response to user
       else {
+        // erase the expiration cache
+        pthread_rwlock_wrlock(&rw_mutex);
+        cache_map.erase(req.get_startLine());
+        pthread_rwlock_unlock(&rw_mutex);
         send(client_fd, new_res_msg.data(), new_res_msg.size(), 0);
         try_cache(new_res, status_line, client_id);
       }
@@ -335,6 +345,10 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
     // check age and expire
     /* expire time check */
     if (res.isExpire()) {
+      // erase the expiration cache
+      pthread_rwlock_wrlock(&rw_mutex);
+      cache_map.erase(req.get_startLine());
+      pthread_rwlock_unlock(&rw_mutex);
       // Ask for a new Response
       string exprTime = res.get_expireTime();
       pthread_mutex_lock(&mutex);
@@ -347,7 +361,7 @@ bool try_used_cache(int client_fd, int client_id, int server_fd, char * msg, int
     else {
       // return the current cache to the client
       pthread_mutex_lock(&mutex);
-      //cout << client_id <<": NON-EXPIRE\n";
+      // cout << client_id <<": NON-EXPIRE\n";
       outfile << client_id << ": in cache, valid" << endl;
       pthread_mutex_unlock(&mutex);
       vector<char> all_msg = res.get_allMsg();
