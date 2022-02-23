@@ -1,0 +1,27 @@
+0:  "CONNECT start.firefoxchina.cn:443 HTTP/1.1" from start.firefoxchina.cn @ Wed Feb 23 21:57:15 2022
+
+0: Requesting "CONNECT start.firefoxchina.cn:443 HTTP/1.1" from start.firefoxchina.cn
+0: Responding "HTTP/1.1 200 OK"
+1:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Wed Feb 23 21:57:16 2022
+
+1: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+1: Responding "HTTP/1.1 200 OK"
+5:  "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com @ Wed Feb 23 21:57:17 2022
+
+5: Requesting "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com
+4:  "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com @ Wed Feb 23 21:57:17 2022
+
+4: Requesting "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com
+4: Responding "HTTP/1.1 200 OK"
+6:  "CONNECT hm.baidu.com:443 HTTP/1.1" from hm.baidu.com @ Wed Feb 23 21:57:17 2022
+
+5: Responding "HTTP/1.1 200 OK"
+6: Requesting "CONNECT hm.baidu.com:443 HTTP/1.1" from hm.baidu.com
+7:  "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org @ Wed Feb 23 21:57:18 2022
+
+7: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+6: Responding "HTTP/1.1 200 OK"
+7: Responding "HTTP/1.1 200 OK"
+8:  "CONNECT www.wikipedia.org:443 HTTP/1.1" from www.wikipedia.org @ Wed Feb 23 21:57:21 2022
+
+8: Requesting "CONNECT www.wikipedia.org:443 HTTP/1.1" from www.wikipedia.org

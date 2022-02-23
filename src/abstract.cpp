@@ -33,7 +33,7 @@ int connect_to(const char* hostname, const char* port) {
     }
 
     if (p == NULL) {
-        //fprintf(stderr, "Error: fail to connect\n");
+        fprintf(stderr, "Error: fail to connect\n");
         exit(EXIT_FAILURE);
     }
     freeaddrinfo(host_info_list); // all done with this
@@ -56,7 +56,7 @@ int create_service(const char * hostname, const char * port) {
     hints.ai_flags = AI_PASSIVE;
     status = getaddrinfo(hostname, port, &hints, &host_info_list);
     if (status != 0) {
-        //fprintf(stderr, "Error: cannot get addrss info for host when creating\n");
+        fprintf(stderr, "Error: cannot get addrss info for host when creating\n");
         exit(EXIT_FAILURE);
     }
 
@@ -83,13 +83,13 @@ int create_service(const char * hostname, const char * port) {
     }
     // check if fail to check
     if (p == NULL) {
-        //fprintf(stderr, "Error: fail to create socket or bind\n");
+        fprintf(stderr, "Error: fail to create socket or bind\n");
         exit(EXIT_FAILURE);
     }
     // listen
     status = listen(socket_fd, 100);
     if (status == -1) {
-        //fprintf(stderr, "Error: fail to listen\n");
+        fprintf(stderr, "Error: fail to listen\n");
         exit(EXIT_FAILURE);
     }
 
@@ -105,7 +105,7 @@ int accept_connect(int socket_fd) {
     // accept players' connection
     client_connection_fd = accept(socket_fd, (struct sockaddr *)&player_socket_addr, &player_socket_addr_len);
     if (client_connection_fd == -1) {
-        //fprintf(stderr, "Error: cannot accept connection on socket\n");
+        fprintf(stderr, "Error: cannot accept connection on socket\n");
         exit(EXIT_FAILURE);
     }
     return client_connection_fd;
